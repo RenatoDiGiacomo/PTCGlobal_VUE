@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PTC.Global</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="search">
+        <label for="search">Seach for a github user account:</label>
+        <input id="search" type="text" placeholder="User ID" v-model="query" />
+        <button @click="dataGet">Search</button>
+      </div>
+      <section class="data">
+        <table v-if="status === 200">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Private</th>
+              <th>URL</th>
+              <th>Description</th>
+              <th>Language</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in request">
+              <td>{{item.name}}</td>
+              <td>{{item.private}}</td>
+              <td>{{item.html_url}}</td>
+              <td>{{item.description}}</td>
+              <td>{{item.language}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="notfind" v-if="status === 404">User do not find</div>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
